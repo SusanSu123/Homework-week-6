@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"href= "css/style.css" />
+    <title>Weather Dashboard</title>
+
+</head>
+<body>
+
+<!--nav bar-->
+<nav>
+    <h1>Weather Dashboard</h1>
+</nav>
+
+<!--aside-->
+<aside>
+<div class="side-bar">
+    <p>Search for a City:</p>
+    <form action="/action_page.php"></form>
+       <input type="text" class="search-input">
+       <button type="search"><i class="fa fa-search"></i></button>
+    </form>
+    <ul class=search-history>
+    </ul>
+</div>
+
+</aside>
+
+<!--main-->
+<div class="main">
+    <div class="current-location">
+       <h1 class="city-name"></h1>
+       <ul>
+         <li>Temperature:<span class="temperature"></span></li>
+         <li>Humidity:<span class="humidity"></span></li></li>
+         <li>Wind Speed:<span class="wind-speed"></span></li></li>
+         <li>UV Index:<span class="ux-index"></span></li></li>
+       </ul>
+    </div>
+
+    <div>
+        <h2>5-Day Forecast</h2>
+        <div class="cotainer">
+            <div class="future-weather day-1">
+                <h2 class="Date"></h2>
+                <div class="weather-icon"></div>
+                <p calss="Temp">Temp:</p>
+                <p class="Humidity">Humidity:</p>
+
+
+            </div>
+
+            <div class="future-weather day-2">
+                <h2 class="Date"></h2>
+                <div class="weather-icon"></div>
+                <p calss="Temp">Temp:</p>
+                <p class="Humidity">Humidity:</p>
+
+
+            </div>
+
+            <div class="future-weather day-3">
+                <h2 class="Date"></h2>
+                <div class="weather-icon"></div>
+                <p calss="Temp">Temp:</p>
+                <p class="Humidity">Humidity:</p>
+
+            </div>
+
+            <div class="future-weather day-4">
+                <h2 class="Date"></h2>
+                <div class="weather-icon"></div>
+                <p calss="Temp">Temp:</p>
+                <p class="Humidity">Humidity:</p>
+
+
+            </div>
+
+            <div class="future-weather day-5">
+                <div class="weather-icon"></div>
+                <p calss="Temp">Temp:</p>
+                <p class="Humidity">Humidity:</p>
+
+
+            </div>
+        </div>
+
+ </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
