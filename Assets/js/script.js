@@ -1,30 +1,36 @@
-var searchHistoryUl = $('#search-history');
-var searchBtn = $('#fa-search');
-var myCity = $('#city-name');
-var searchInput = $('#search-input');
+var searchHistoryUl = $('#search-history');//sidebar
+var searchBtn = $('#search-button');//sidebar
+var searchInput = $('#search-input');//sidebar
+var myCity = $('#city-name');//main
+var temperature = $("#temperature")
+var image = $('#weather-image')
+var dateEl = $('#date_value');//main
+var humidityEl = $('#humidity');//main
+var windSpeed = $('#wind-speed');
+
+
+
 
 /*side bar*/
 var searchedCities = [];
 
 function renderSearchedCities() {
-    searchInput.innerHTML = "";
-
-    for (var i = 0; i < searchedCities.length; i++) {
-        var searchCity = searchedCities[i];
-
-        var li = $('<li>');
-        li.textContent = searchCity;
-        li.setAttribute("data-index", i);
-
-        searchHistoryUl.appendChild(li);
-        li.appendChild(searchCity);
+    searchHistoryUl.text("") ;
+   
+    searchedCities.forEach(element => {
+        var li = $("<li>")
+        li.text(element);
+        searchHistoryUl.append(li);        
+    });
     }
-}
 
 function init() {
-    var storedCities = JSON.parse(localStorage.getItem("cities"));
-    if (storedCities !== null) {
-        searchedCities = storedCities;
+    var storedCities = localStorage.getItem("searchCity");
+    if (!storedCities) {
+        searchedCities = []
+    }
+    else{
+        searchedCities = JSON.parse(storedCities)
     }
     renderSearchedCities();
 }
@@ -32,29 +38,111 @@ function init() {
 function storeCity() {
     localStorage.setItem("cities", JSON.stringify(searchedCities));
 }
- searchBth.on("click", function(event) {
-     event.preventDefault();
+ 
 
- })
+function getWeather() {
+    var cityName = searchInput.val();
+    var requestURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
 
-var myCityTemperature = $('#temperature');
-var myCityHumidity = $('#humidity');
-var myCityWindSpeed = $('#wind-speed');
-var myCityUX = $('#ux-index');
+    fetch (requestURL)
+    .then(function (response) {
+        console.log(response)
+        return response.json();
+    })
+    .then(function (data){
+        return renderWeather(data);
+    })
+    .catch(function (error){
+        console.log(error)
+    })
+}
+function renderWeather(data){
+    myCity.text(data.name);
+    temperature.text(" " + data.main.temp_max + " ℉");
+    humidityEl.text(" " + data.main.humidity + " %");
+    windSpeed.text(" " + data.wind.speed + " MPH");
+  
 
 
-function getApi() {
-var requestURL = 'https://openweathermap.org/';
 
-fetch(requestUrl)
- .then(function (response) {
-     return response.json();
- })
-.then(function (data) {
+   image.attr('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+}
 
+function getForecast() {
+    var cityName = searchInput.val();
+    var requestURL = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
+
+    fetch (requestURL)
+    .then(function (response) {
+        console.log(response)
+        return response.json();
+    })
+    .then(function (data){
+        return renderForecast(data);
+    })
+    .catch(function (error){
+        console.log(error)
+    })
+}
+
+function renderForecast(data){
+
+    var date_value = "";
+    var temp = 0;
+    var humidity = 0;
+    var dateArray = [];
+    var imgEl = "";
+    var cardIndex = 1;
+for (index = 0; index < data.list.length-1; index++) {
+    var dateValue = new Date(data.list[index].dt_txt).toLocaleDateString();
+if (!dateArray.includes(dateValue)) {
+    dateArray.push(dateValue);
+   
+    temp = data.list[index].main.temp_max;
+    humidity = data.list[index].main.humidity;
+
+    var dateElm = $("#day" + (cardIndex) +"-title") ;
+    dateElm.text(dateValue);
+
+    imgEl.attr('src', `http://openweathermap.org/img/w/${data.weather[index].icon}.png`)
+
+    var tempEl = $("#day" + (cardIndex) +"-temp") ;
+    tempEl.text("Temp: " +temp + " ℉")
+
+    var humEl = $("#day" + (cardIndex) +"-humidity") ;
+    humEl.text("Humidity: " +humidity + " %")
+
+    var imgEl = $("#day" + (cardIndex) +"-img") ;
+
+    
+    cardIndex++;
 }
 }
+}
 
 
+searchBtn.on("click", function(event) {
+    event.preventDefault();
+    getWeather();
+    getForecast();
+    storeCities();
 
+})
+
+function storeCities(){
+
+    var storedCities = localStorage.getItem("searchCity");
+    if (!storedCities) {
+        searchedCities = [searchInput.val()]
+    }
+    else{
+        searchedCities = JSON.parse(storedCities)
+        searchedCities.push(searchInput.val())
+    }
+    localStorage.setItem("searchCity",  JSON.stringify(searchedCities));
+    renderSearchedCities();
+    searchInput.text("");
+}
+
+document.addEventListener("load", init)
 
