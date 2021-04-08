@@ -4,8 +4,6 @@
 ## Ovderview
 The purpose of the this project is to use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. 
 
-
-<br>
 <br>
 
 ## How to install
@@ -15,15 +13,11 @@ The purpose of the this project is to use the [OpenWeather API](https://openweat
 <ul>Open with your favarite browser</ul>
 
 <br>
-<br>
-
 
 ## Implementatin Details
 Built with HTML, CSS, Bootstrap, jQuery, localStorage, fetch data from server side, third party API
 
 <br>
-<br>
-
 
 ## User Story
 
