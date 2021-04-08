@@ -1,7 +1,7 @@
 # Homework-week-6 Server-Side APIs: Weather Dashboard
 
 
-## Ovderview
+## Overview
 The purpose of the this project is to use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. 
 
 <br>
