@@ -5,15 +5,24 @@
 The purpose of the this project is to use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. 
 
 
+<br>
+<br>
+
 ## How to install
-Clone the repository
-Git clone https://github.com/SusanSu123/Homework-week-6.git
-Go to index.html
-Open with your favarite browser
+<ul> Clone the repository</ul>
+<ul>Git clone https://github.com/SusanSu123/Homework-week-6.git</ul>
+<ul> Go to index.html</ul>
+<ul>Open with your favarite browser</ul>
+
+<br>
+<br>
 
 
 ## Implementatin Details
-Built with HTML, CSS, Bootstrap, jQuery, localStorage, fetch data from third party
+Built with HTML, CSS, Bootstrap, jQuery, localStorage, fetch data from server side, third party API
+
+<br>
+<br>
 
 
 ## User Story
