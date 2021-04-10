@@ -2,13 +2,10 @@ var searchHistoryUl = $('#search-history');//sidebar
 var searchBtn = $('#search-button');//sidebar
 var searchInput = $('#search-input');//sidebar
 var myCity = $('#city-name');//main
-var temperature = $("#temperature")
-var image = $('#weather-image')
-var dateEl = $('#date_-alue');//main
+var temperature = $("#temperature");//main
+var image = $('#weather-image');//main
 var humidityEl = $('#humidity');//main
-var windSpeed = $('#wind-speed');
-
-
+var windSpeed = $('#wind-speed');//main
 
 
 /*side bar*/
@@ -57,11 +54,12 @@ function getWeather() {
     })
 }
 function renderWeather(data){
-    myCity.text(data.name);
+    var todayDate = new Date( data.dt * 1000); 
+    myCity.text(data.name)
     temperature.text(" " + data.main.temp_max + " ℉");
     humidityEl.text(" " + data.main.humidity + " %");
     windSpeed.text(" " + data.wind.speed + " MPH");
-    image.attr('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+   image.attr('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
 }
 
 /*5 day forecast*/
@@ -102,7 +100,8 @@ if (!dateArray.includes(dateValue)) {
     var dateElm = $("#day" + (cardIndex) +"-title") ;
     dateElm.text(dateValue);
 
-    imgEl.attr('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+    var imgEl = $("#day" + (cardIndex) +"-img") ;
+    imgEl.attr('src', `http://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png`)
 
     var tempEl = $("#day" + (cardIndex) +"-temp") ;
     tempEl.text("Temp: " +temp + " ℉")
@@ -110,9 +109,6 @@ if (!dateArray.includes(dateValue)) {
     var humEl = $("#day" + (cardIndex) +"-humidity") ;
     humEl.text("Humidity: " +humidity + " %")
 
-    var imgEl = $("#day" + (cardIndex) +"-img") ;
-
-    
     cardIndex++;
 }
 }
@@ -141,6 +137,23 @@ function storeCities(){
     renderSearchedCities();
     searchInput.text("");
 }
+
+function formatDate(date) {
+    var d = new Date(data),
+    month = '' + (d.getMonth() +1);
+    day = '' + d.getDate();
+    year = d.getFullYear();
+
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}  
+
+
 
 document.addEventListener("load", init)
 
