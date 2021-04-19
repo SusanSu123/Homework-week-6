@@ -55,7 +55,8 @@ function getWeather() {
 }
 function renderWeather(data){
     var todayDate = new Date( data.dt * 1000); 
-    myCity.text(data.name)
+
+    myCity.text(data.name + todayDate.getDate());
     temperature.text(" " + data.main.temp_max + " ℉");
     humidityEl.text(" " + data.main.humidity + " %");
     windSpeed.text(" " + data.wind.speed + " MPH");
