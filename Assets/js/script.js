@@ -39,7 +39,7 @@ function storeCity() {
 /*current-weather*/
 function getWeather() {
     var cityName = searchInput.val();
-    var requestURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
+    var requestURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
 
     fetch (requestURL)
     .then(function (response) {
@@ -60,14 +60,14 @@ function renderWeather(data){
     temperature.text(" " + data.main.temp_max + " ℉");
     humidityEl.text(" " + data.main.humidity + " %");
     windSpeed.text(" " + data.wind.speed + " MPH");
-   image.attr('src', `http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+   image.attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`)
 }
 
 /*5 day forecast*/
 
 function getForecast() {
     var cityName = searchInput.val();
-    var requestURL = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
+    var requestURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=9d8e1806744266054d5440d333faa166`;
 
     fetch (requestURL)
     .then(function (response) {
@@ -102,7 +102,7 @@ if (!dateArray.includes(dateValue)) {
     dateElm.text(dateValue);
 
     var imgEl = $("#day" + (cardIndex) +"-img") ;
-    imgEl.attr('src', `http://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png`)
+    imgEl.attr('src', `https://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png`)
 
     var tempEl = $("#day" + (cardIndex) +"-temp") ;
     tempEl.text("Temp: " +temp + " ℉")
