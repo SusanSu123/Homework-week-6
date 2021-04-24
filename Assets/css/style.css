@@ -26,26 +26,52 @@ nav h1{
 /*side bar*/
 .side-bar {
     
-    background-color: lightgray;
+    background-color: rgb(235, 240, 243);
     height: 100%; 
     width: 250px;
     position: absolute; 
-    z-index: 1;
     top: 48; 
-    left: 0;
-    overflow-x: hidden; 
-    padding-top: 20px;
+    padding: 10px;
+
+}
+#search-input {
+    border-color: rgb(231, 229, 229);
+    border-radius: 4px;
+
 
 }
 
 
+#search-button {
+    color: white;
+    background-color: rgb(26, 140, 247);
+    border-radius: 5px;
+    border: rgb(26, 140, 247);
+    padding: 5px 10px;
+}
+
+.side-bar p {
+    font-weight:bolder;
+    font-size: larger;
+}
 .side-bar ul {
-    line-height: 2em;
-    border: 2px solid darkgray;
-    font-size:20px;
+    font-size:15px;
+    padding: 10px;;
 
 }
 
+.side-bar ul li {
+    background-color: white;
+    list-style: none;
+    border: rgb(191, 206, 214) solid 1px;
+    padding-left: 10px;
+    margin-right: 10px;
+    line-height: 2em;
+    border-radius: 3px;
+    font-size: 18px;
+    
+
+}
 /*main*/
 .main {
     margin-left: 250px; 
@@ -64,31 +90,30 @@ nav h1{
     
 }
 
-.future-weather {
-    display: flex;
-    background-color: skyblue;
-    display: flex;
-    margin: 10px;
-    height: 150px;
-    border-radius: 5px;
-    color: white;
-    justify-content:left;
-    align-items: center;
-   
+.current-location ul {
+    list-style: none;
 }
+
 
 h2 {
    
     padding: 10px;
-    margin: 30px 0 ;
+    margin: 10px 0 ;
 }
 
 .card {
     background-color: rgb(26, 140, 247);
     margin: 5px;
+    color: white;
     
 }
 
 .card-body {
     text-align: left;
+    
+}
+
+.card-img-top {
+    height: 50px;
+    width: 50px;
 }

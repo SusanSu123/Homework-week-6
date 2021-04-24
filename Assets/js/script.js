@@ -55,12 +55,13 @@ function getWeather() {
 }
 function renderWeather(data){
     var todayDate = new Date( data.dt * 1000); 
-
-    myCity.text(data.name + todayDate.getDate());
+    myCity.text(data.name + " (" + todayDate.toLocaleDateString() + ") " );
+    image.attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`);
     temperature.text(" " + data.main.temp_max + " ℉");
     humidityEl.text(" " + data.main.humidity + " %");
     windSpeed.text(" " + data.wind.speed + " MPH");
-   image.attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`)
+   
+    
 }
 
 /*5 day forecast*/
@@ -84,7 +85,7 @@ function getForecast() {
 
 function renderForecast(data){
 
-    var date_value = "";
+    //var date_value = "";
     var temp = 0;
     var humidity = 0;
     var dateArray = [];
